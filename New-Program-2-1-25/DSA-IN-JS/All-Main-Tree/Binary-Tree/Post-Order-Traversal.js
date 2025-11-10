@@ -1,0 +1,95 @@
+/* 
+Traversal :- To visit all nodes.
+There are 4 types of traversal
+
+(1) Level Order Traversal :- Steps
+- Visit nodes at the current level.
+- Move to the next level and repeat.
+Ex:- 1,2,3,4,5
+
+(2) Pre Order Traversal :- Steps
+- Visit the root node.
+- Traverse the left subtree.
+- Traverse the right subtree.
+Ex:- o/p 1,2,4,5,3
+
+(3) In Order Traversal :- Steps
+- Traverse the left subtree.
+- Visit the root node.
+- Traverse the right subtree.
+Ex:- 4,2,5,1,3
+
+(4) Post Order Traversal :- Steps
+- Traverse the left subtree.
+- Traverse the right subtree.
+- Visit the root node.
+Ex:- 4,5,2,3,1
+
+*/
+
+class Node{
+    constructor(value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinaryTree {
+    constructor(){
+        this.root = null;
+    }
+
+    // Insert Binary Tree
+    insert(value){
+       // console.log("Insert Dir", value);
+        const newNode = new Node(value);
+       // console.log("New Node", newNode);
+        if(this.root === null){
+            this.root = newNode;
+            return;
+        }
+
+        // Data Printing and data set
+        const queue = [this.root];
+        // console.log("Queue", queue);
+        while(queue.length > 0){
+            const current = queue.shift();
+            if(!current.left){
+                current.left = newNode;
+                // console.log("Left Root", this.root);
+                return;
+            }else{
+                queue.push(current.left);
+            }
+            if(!current.right){
+                current.right = newNode;
+                console.log("Right Root", this.root);
+                return;
+            }else{
+                queue.push(current.right);
+            }
+        }
+    }
+
+    // Post Order Traversal using Recursion
+    PostOrderTraversal(node = this.root){
+        if(node){
+        this.PostOrderTraversal(node.left);
+        this.PostOrderTraversal(node.right);
+        console.log(node.value);
+    }
+   }
+}
+
+const Obj = new BinaryTree();
+Obj.insert(10);
+Obj.insert(20);
+Obj.insert(30);
+Obj.insert(40);
+Obj.insert(50);
+Obj.insert(60);
+Obj.insert(70);
+
+console.log("Post Order Traversal");
+Obj.PostOrderTraversal();

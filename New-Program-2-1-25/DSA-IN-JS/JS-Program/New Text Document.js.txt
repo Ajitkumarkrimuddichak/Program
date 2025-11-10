@@ -1,0 +1,185 @@
+// What is data Types ? :- Classification that specifies which type of value.
+/****(1) Primitive Data type :- Used stack Memory , Call by value hote hai, 
+used in Deep copy ****/
+
+
+// Ex :- Used stack Memory, Copy hi milata hai
+/*
+let myName = "Ajitkumar";
+let anotherName = myName;
+anotherName = "Mukulkumar";
+console.log("A  = ",myName);
+console.log(anotherName);
+*/
+
+
+//Ex :-  Primitive - Call by Value
+/*
+let a = 10;
+function changePrimitive(x) {
+  x = x + 5;
+  console.log("Inside function (primitive):", x);
+}
+changePrimitive(a);
+console.log("Outside function (primitive):", a); 
+*/
+
+
+//JavaScript create Deep copy
+//Ex:- A deep copy of an object is a copy whose properties do not share the same references.
+/*
+const originalObject = {
+  name: "Ajit",
+  age: 28,
+  address: {
+    city: "Bengaluru",
+    country: "India",
+  },
+};
+
+const deepCopyObject = JSON.parse(JSON.stringify(originalObject));
+originalObject.name = "Ram";
+originalObject.address.city = "Patna";
+console.log("Oriznal value =",deepCopyObject);
+console.log("Modefied value =",originalObject);
+*/
+
+/*
+const original = {
+  name: "Ram",
+  address: {
+    city: "Patna",
+    Age: 45
+  }
+};
+const copied = structuredClone(original);
+copied.address.city = "Bengaluru";
+
+console.log("Org =",original.address.city);
+console.log("Cop =",copied.address.city);   
+*/
+
+
+
+
+// Non-Primitive DataType use in Heap Memory
+//Ex:-Re-reference hi milata hai
+/*
+let userOne = {
+  email: "Ajit@gmail.com",
+  upi: "user@ybl",
+};
+let userTwo = userOne;
+userTwo.email = "newGmail@gmail.com";
+console.log(userOne.email);
+console.log(userTwo.email);
+*/
+
+
+//JavaScript create Shallow copies
+//Ex:-  A shallow copy of an object is a copy whose properties share the same references.
+/*
+let obj1 = { id: 1, company: "Karmaa" };
+const obj2 = obj1;
+obj2.id = 2;
+console.log(obj1.id);
+console.log(obj2.id);
+*/
+
+
+// Non-Primitive - Call by Reference
+/*
+  let obj = { num: 10 };
+  function changeObject(o) {
+    o.num = o.num + 5;
+    console.log("Inside function =", o.num); 
+  }
+  
+  changeObject(obj);
+  console.log("Outside function =", obj.num); 
+*/
+
+//(or) Call by Reference
+function updatePerson(person) {
+  person.name = "Ajit"; 
+}
+const personObj = { name: "Ram" };
+console.log("Before:", personObj.name); 
+updatePerson(personObj);
+console.log("After:", personObj.name); 
+
+
+
+//******* Can used method from() Ajit Today *******//
+// Array.from()
+// Definition :- Creates a new array from an array-like or iterable object, optionally transforming each element.
+
+
+// console.log(Array.from({ name: "Ajit" })); // interesting // Isako directely convert nahi kar pata hai//hamesa empty [] array dega //aap key se array banaiye // nahi to aap sare value se array banaiye
+// const obj = { name: "Ajit" }; // Only for "Key" , Convert in Array
+// const keysArray = Array.from(Object.keys(obj));
+// console.log(keysArray); // Output: ["name"]
+
+// const obj = { name: "Ajit",age:25 }; // Only for "Value" , Convert in Array
+// const valuesArray = Array.from(Object.values(obj));
+// console.log(valuesArray); // Output: ["Ajit"]
+
+/*
+const obj = { name: "Ajit" };
+const valuesArray = Array.from(obj.name);
+console.log(valuesArray); // Output: ["A", "j", "i", "t"]
+*/
+
+//(1) Convert a string to an array:
+
+// let str = "hello";
+// let arr = Array.from(str);
+// console.log(arr); // ['h', 'e', 'l', 'l', 'o']
+
+// (2) Convert a Set to an array:
+// let setVal = new Set([1, 2, 3]);
+// console.log("Without from method used =",setVal)
+// let arr = Array.from(setVal);
+// console.log("from method used",arr); // [1, 2, 3]
+
+// (3) Use with map function:
+// let nums = Array.from([1, 2, 3], x => x * 2);
+// console.log(nums); // [2, 4, 6]
+
+// (4) Convert arguments object to array:
+// function demo() {
+//   let args = Array.from(arguments);
+//   console.log(args);
+// }
+// demo(1, 2, 3); // [1, 2, 3]
+
+
+//******* Can used of() method **************
+// Array.of() => Definition :- Creates a new array instance with the given arguments, 
+//ensuring each argument becomes a separate element
+
+/*
+let score1 = [100,200,300];
+let score2 = [400,500];
+let score3 = [600];
+console.log(Array.of(score1, score2, score3)); //Array conver
+*/
+
+// let score1 = 10;
+// let score2 = 20;
+// let score3 = 25;
+// console.log(Array.of(score1, score2, score3)); //Array conver
+
+
+// (1) Create a simple array:
+let arr = Array.of(1, 2, 3);
+console.log(arr); // [1, 2, 3]
+
+// (2) Difference with Array constructor:
+Array(3);        // Creates an empty array of length 3 [ <3 empty items> ]
+Array.of(3);     // Creates [3]
+
+// (3) Heterogeneous elements:
+let mix = Array.of('a', 1, true, null);
+console.log(mix); // ['a', 1, true, null]
+
